@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Time Picker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex justify-center items-center min-h-screen bg-gray-100">
+  <div class="p-6 bg-white rounded-lg shadow-md w-80">
+    <h2 class="text-lg font-semibold mb-4 text-center">Select Time</h2>
+
+    <!-- Time Picker -->
+    <div class="flex justify-between items-center mb-4">
+      <!-- Hour Selector -->
+      <div>
+        <label for="hour" class="block text-sm font-medium text-gray-700">Hour</label>
+        <select id="hour" class="mt-1 block w-20 p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+          <!-- Hour Options -->
+          <script>
+            for (let i = 0; i < 24; i++) {
+              document.write(`<option value="${i}">${i.toString().padStart(2, '0')}</option>`);
+            }
+          </script>
+        </select>
+      </div>
+
+      <!-- Minute Selector -->
+      <div>
+        <label for="minute" class="block text-sm font-medium text-gray-700">Minute</label>
+        <select id="minute" class="mt-1 block w-20 p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+          <!-- Minute Options -->
+          <script>
+            for (let i = 0; i < 60; i++) {
+              document.write(`<option value="${i}">${i.toString().padStart(2, '0')}</option>`);
+            }
+          </script>
+        </select>
+      </div>
+
+      <!-- Second Selector -->
+      <div>
+        <label for="second" class="block text-sm font-medium text-gray-700">Second</label>
+        <select id="second" class="mt-1 block w-20 p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+          <!-- Second Options -->
+          <script>
+            for (let i = 0; i < 60; i++) {
+              document.write(`<option value="${i}">${i.toString().padStart(2, '0')}</option>`);
+            }
+          </script>
+        </select>
+      </div>
+    </div>
+
+    <!-- Save Button -->
+    <button id="saveTime" class="w-full bg-blue-500 text-white py-2 rounded-md shadow hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Save Time</button>
+
+    <!-- Saved Time Input -->
+    <div class="mt-4">
+      <label for="savedTime" class="block text-sm font-medium text-gray-700">Saved Time</label>
+      <input id="savedTime" type="text" readonly class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="No time saved" />
+    </div>
+  </div>
+
+  <script>
+    // JavaScript to handle Save Time button
+    document.getElementById('saveTime').addEventListener('click', function () {
+      const hour = document.getElementById('hour').value;
+      const minute = document.getElementById('minute').value;
+      const second = document.getElementById('second').value;
+
+      // Update the saved time input
+      const savedTime = `${hour.padStart(2, '0')}:${minute.padStart(2, '0')}:${second.padStart(2, '0')}`;
+      document.getElementById('savedTime').value = savedTime;
+    });
+  </script>
+</body>
+</html>
