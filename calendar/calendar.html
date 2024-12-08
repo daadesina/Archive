@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendar Example</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./calendar.css">
+</head>
+<body class=" flex justify-center items-center min-h-screen">
+  <div>
+    <div class="calendar rounded-xl">
+      <!-- Month and Year -->
+      <div class="flex justify-between items-center">
+        <div class="month-year">December 2024</div>
+        <div class="controls flex gap-3 pr-3 font-bold">
+          <button id="prev"> < </button>
+          <button id="next"> > </button>
+        </div>
+      </div>
+      
+      <!-- Days of the Week -->
+      <div class="days-of-week">
+        <div>Mo</div>
+        <div>Tu</div>
+        <div>We</div>
+        <div>Th</div>
+        <div>Fr</div>
+        <div>Sa</div>
+        <div>Su</div>
+      </div>
+
+      <!-- Calendar Days -->
+      <div class="days">
+        <!-- Empty divs for days before the first of the month -->
+        <div role="button"></div> <!-- For alignment -->
+        <div role="button"></div> <!-- For alignment -->
+        <div role="button"></div> <!-- For alignment -->
+        <div role="button"></div> <!-- For alignment -->
+        <div role="button">1</div>
+        <div role="button">2</div>
+        <div role="button">3</div>
+        <div role="button">4</div>
+        <div role="button">5</div>
+        <div role="button">6</div>
+        <div role="button">7</div>
+        <div role="button">8</div>
+        <div role="button">9</div>
+        <div role="button">10</div>
+        <div role="button">11</div>
+        <div role="button">12</div>
+        <div role="button">13</div>
+        <div role="button">14</div>
+        <div role="button">15</div>
+        <div role="button">16</div>
+        <div role="button">17</div>
+        <div role="button">18</div>
+        <div role="button">19</div>
+        <div role="button">20</div>
+        <div role="button">21</div>
+        <div role="button">22</div>
+        <div role="button">23</div>
+        <div role="button">24</div>
+        <div role="button">25</div>
+        <div role="button">26</div>
+        <div role="button">27</div>
+        <div role="button">28</div>
+        <div role="button">29</div>
+        <div role="button">30</div>
+        <div role="button">31</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./calendar.js"></script>
+</body>
+</html>
