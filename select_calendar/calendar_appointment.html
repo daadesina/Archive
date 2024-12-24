@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compact Calendar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .day:hover { background: #f1f5f9; cursor: pointer; }
+    .selected { background: #e0e7ff; border: 2px solid #6366f1; border-radius: 20%; }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="bg-white p-6 shadow-md rounded-xl w-80">
+    <div class="flex justify-between mb-4">
+      <button id="prev" class="p-2 bg-gray-200 rounded hover:bg-gray-300">&uarr;</button>
+      <h2 id="monthYear" class="font-bold"></h2>
+      <button id="next" class="p-2 bg-gray-200 rounded hover:bg-gray-300">&darr;</button>
+    </div>
+    <div class="grid grid-cols-7 text-center text-gray-500 mb-2">
+      <span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span>
+    </div>
+    <div id="days" class="grid grid-cols-7 gap-y-2 text-center"></div>
+    <form method="POST" action="/submit-date" class="mt-4">
+      <input type="hidden" name="selected_date" id="selectedDate">
+      <button type="submit" class="w-full py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">
+        Submit Date
+      </button>
+    </form>
+  </div>
+  <script>
+    const daysEl = document.getElementById("days");
+    const dateInput = document.getElementById("selectedDate");
+    let [year, month, selected] = [new Date().getFullYear(), new Date().getMonth(), null];
+
+    const render = () => {
+      const first = new Date(year, month, 1);
+      const days = new Date(year, month + 1, 0).getDate();
+      document.getElementById("monthYear").textContent = first.toLocaleDateString("en-US", { month: "long", year: "numeric" });
+
+      daysEl.innerHTML = "";
+      Array.from({ length: (first.getDay() + 6) % 7 }).forEach(() => daysEl.appendChild(document.createElement("div")));
+      Array.from({ length: days }).forEach((_, i) => {
+        const day = i + 1;
+        const el = document.createElement("div");
+        el.textContent = day;
+        el.className = "day p-2" + (selected === day ? " selected" : "");
+        el.onclick = () => {
+          selected = day;
+          dateInput.value = `${month + 1}`.padStart(2, "0") + `/${day}`.padStart(2, "0") + `/${year}`;
+          render();
+        };
+        daysEl.appendChild(el);
+      });
+    };
+
+    document.getElementById("prev").onclick = () => (month-- < 0 && (month = 11, year--), render());
+    document.getElementById("next").onclick = () => (month++ > 11 && (month = 0, year++), render());
+    render();
+  </script>
+</body>
+</html>
